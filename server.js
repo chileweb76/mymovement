@@ -9,7 +9,7 @@ const moodCtlr = require('./api/controllers/mood');
 const medsCtlr = require('./api/controllers/meds');
 const bowelCtlr = require('./api/controllers/bowel');
 const imageCtlr = require('./api/controllers/image');
-const authCtlr = require('./API/controllers/auth');
+const authCtlr = require('./api/controllers/auth');
 const forgotpwdCtlr = require('./api/controllers/forgotpassword');
 const nodemailer = require('nodemailer')
 require("dotenv").config();
