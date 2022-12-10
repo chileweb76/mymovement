@@ -1,0 +1,18 @@
+.moodContainer {
+    background-color: $color-mood;
+    padding: 2rem;
+}
+
+.moodNotes {
+    background-color: $color-mood;
+    border: none;
+}
+
+.moodButtons {
+    background-color: $color-mood;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}

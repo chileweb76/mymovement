@@ -1,0 +1,18 @@
+.bowelContainer {
+    background-color: $color-bowel;
+    padding: 2rem;
+}
+
+.bowelNotes {
+    background-color: $color-bowel;
+    border: none;
+}
+
+.bowelButtons {
+    background-color: $color-bowel;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}

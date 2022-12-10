@@ -1,0 +1,53 @@
+.cardGroup {
+    margin: auto;
+    width: 85%;
+}
+
+.p {
+    margin: 1rem 2rem;
+}
+
+.entryH2 {
+    color: white;
+    margin: 2rem;
+}
+
+.input {
+    font-size: 1.4rem;
+}
+
+.title {
+    margin: 2rem 2rem 1rem 2rem;
+    font-size: 1.4rem;
+}
+
+.textarea {
+    border: none;
+    margin: 2rem 2rem;
+    padding: 1rem .5rem;
+    height: 30rem;
+}
+
+.save {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+   
+}
+
+.delete {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.entryButton {
+    background-color: $color-btn;
+    color: black;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color-btn-hover;
+    }
+}

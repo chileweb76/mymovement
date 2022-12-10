@@ -1,0 +1,46 @@
+.foodContainer {
+    background-color: $color-food;
+    padding: 2rem;
+}
+
+.search {
+    background-color: $color-food;
+    border: none;
+}
+
+.ingredients {
+    background-color: $color-food;
+    border: none;
+}
+
+.searchBar {
+    width:50%;
+    margin: 2rem;
+}
+
+.searchButton {
+    background-color: $color-btn;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color-btn-hover;
+        border: none;
+    }
+}
+
+.results {
+    display: block;
+    margin: 2rem 2rem;
+    padding: 1rem .5rem;
+    border: none;
+}
+
+.buttons {
+    background-color: $color-food;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}

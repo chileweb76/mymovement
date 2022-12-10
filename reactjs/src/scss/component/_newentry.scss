@@ -1,0 +1,72 @@
+.newEntryContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.buttonContainer {
+    width: 50%;
+    display: flex;
+}
+
+.food  {
+    width: 25%;
+    margin: 2rem;
+    border-radius: 50px;
+    background-color: $color-food;
+
+    &:hover {
+        background-color: #EABF9A;
+    }
+}
+  
+.mood  {
+    width: 25%;
+    margin: 2rem;
+    border-radius: 50px;
+    background-color: $color-mood;
+   
+    &:hover {
+        background-color: #47FFF3;
+    }
+}
+  
+.meds  {
+    width: 25%;
+    margin: 2rem;
+    border-radius: 50px;
+    background-color: $color-meds;
+
+    &:hover {
+        background-color: #C27085;
+    }
+}
+  
+.bowel  {
+    width: 25%;
+    margin: 2rem;
+    border-radius: 50px;
+    background-color: $color-bowel;
+
+    &:hover {
+        background-color: #849A89;
+    }
+}
+
+.button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    overflow: hidden;
+    outline: none;
+
+    &:hover {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        overflow: hidden;
+        outline: none;
+    }
+}
+  

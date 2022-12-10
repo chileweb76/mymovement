@@ -1,0 +1,42 @@
+
+
+//variables
+$small: 700px;
+$mid: 800px;
+$medium: 900px;
+$large: 1200px;
+$xlarge: 1800px;
+
+$font-stack: 'Montserrat', sans-serif;
+
+$color-food: #DC965A;
+$color-mood: #00CFC1;
+$color-meds: #773344;
+$color-bowel: #3C493F;
+$color-button: #077187;
+$color-button-hover: #00CFC1;
+$color-btn: whitesmoke;
+$color-btn-hover: gray;
+$color-link-hover: #47FFF3;
+
+//mixins & placeholders
+@mixin breakpoint($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@import "reset";
+@import "typography";
+@import "./component/newentry";
+@import "./pages/homepage";
+@import "body";
+@import "./component/header";
+@import "./pages/login";
+@import "./component/footer";
+@import "./component/links";
+@import "./pages/foodentry";
+@import "./pages/moodentry";
+@import "entry";
+@import "./pages/medsentry";
+@import "./pages/bowelentry";

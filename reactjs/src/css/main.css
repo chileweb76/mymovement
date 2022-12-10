@@ -1,0 +1,438 @@
+/* CSS Reset =========================== */
+body, nav, section, footer, article, h1, h2, h3, h4, p, a, ol, ul, li, button, fieldset, form, label {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  font-size: 100%;
+  text-decoration: none;
+  font-weight: normal;
+  color: inherit;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font: 1.4rem/1.2 "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 4.2rem;
+}
+
+h2 {
+  margin-top: 4rem;
+  font-size: 2.8rem;
+}
+
+h3 {
+  font-size: 2.6rem;
+}
+
+p {
+  font-size: 1.6rem;
+  color: white;
+}
+
+label {
+  font-size: 2rem;
+}
+
+.card-title {
+  font-size: 2.2rem;
+  color: white;
+  margin: 1rem 0;
+}
+
+.card-body {
+  font-size: 1.8;
+  color: white;
+}
+
+.newEntryContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.buttonContainer {
+  width: 50%;
+  display: flex;
+}
+
+.food {
+  width: 25%;
+  margin: 2rem;
+  border-radius: 50px;
+  background-color: #DC965A;
+}
+.food:hover {
+  background-color: #EABF9A;
+}
+
+.mood {
+  width: 25%;
+  margin: 2rem;
+  border-radius: 50px;
+  background-color: #00CFC1;
+}
+.mood:hover {
+  background-color: #47FFF3;
+}
+
+.meds {
+  width: 25%;
+  margin: 2rem;
+  border-radius: 50px;
+  background-color: #773344;
+}
+.meds:hover {
+  background-color: #C27085;
+}
+
+.bowel {
+  width: 25%;
+  margin: 2rem;
+  border-radius: 50px;
+  background-color: #3C493F;
+}
+.bowel:hover {
+  background-color: #849A89;
+}
+
+.button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden;
+  outline: none;
+}
+.button:hover {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden;
+  outline: none;
+}
+
+.latesth2 {
+  margin-left: 1rem;
+}
+
+.icon {
+  height: 4rem;
+  width: 4rem;
+  margin: 1rem;
+}
+
+.centeredIcon {
+  text-align: center;
+}
+
+.foodCard {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #DC965A;
+}
+
+.moodCard {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #00CFC1;
+}
+
+.medsCard {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #773344;
+}
+
+.bowelCard {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #3C493F;
+}
+
+.update {
+  font-size: 1.6rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  background-color: #077187;
+}
+
+.update:hover {
+  background-color: #00CFC1;
+}
+
+body {
+  background-image: url(../img/paper.jpg);
+}
+
+header {
+  background-color: #849A89;
+}
+
+.logo {
+  width: 35%;
+  padding: 2rem;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginLogo {
+  width: 50%;
+}
+
+.loginContainer {
+  width: 75%;
+  background-color: whitesmoke;
+  margin: auto;
+  height: 100vh;
+}
+
+form {
+  width: 35%;
+  margin: auto;
+}
+
+.center {
+  text-align: center;
+  padding: 5rem;
+}
+
+.spacing {
+  text-align: center;
+  padding-bottom: 12rem;
+}
+
+.signin {
+  font-size: 2rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  background-color: #077187;
+  width: auto;
+}
+.signin:hover {
+  background-color: #00CFC1;
+}
+
+.errorMessage {
+  color: red;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #849A89;
+  margin-top: 1rem;
+  padding: 3rem;
+}
+
+.footerLogo {
+  width: 5%;
+  margin-right: 10rem;
+}
+
+.footer {
+  margin-top: 1.6rem;
+}
+
+.navlink {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 10px 20px;
+}
+.navlink:hover {
+  color: #47FFF3;
+}
+
+.logoutLink {
+  color: #FFF;
+  margin-top: 1rem;
+  background-color: #849A89;
+  border: none;
+  font-size: 1.6rem;
+}
+.logoutLink:hover {
+  color: #47FFF3;
+}
+
+.signuplink {
+  font-size: 16px;
+  margin: 10px 20px;
+}
+.signuplink:hover {
+  color: #47FFF3;
+}
+
+.forgotPassword {
+  margin-top: 2rem;
+}
+.forgotPassword:hover {
+  color: #47FFF3;
+}
+
+.foodContainer {
+  background-color: #DC965A;
+  padding: 2rem;
+}
+
+.search {
+  background-color: #DC965A;
+  border: none;
+}
+
+.ingredients {
+  background-color: #DC965A;
+  border: none;
+}
+
+.searchBar {
+  width: 50%;
+  margin: 2rem;
+}
+
+.searchButton {
+  background-color: whitesmoke;
+  border: none;
+  cursor: pointer;
+}
+.searchButton:hover {
+  background-color: gray;
+  border: none;
+}
+
+.results {
+  display: block;
+  margin: 2rem 2rem;
+  padding: 1rem 0.5rem;
+  border: none;
+}
+
+.buttons {
+  background-color: #DC965A;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 2rem;
+}
+
+.moodContainer {
+  background-color: #00CFC1;
+  padding: 2rem;
+}
+
+.moodNotes {
+  background-color: #00CFC1;
+  border: none;
+}
+
+.moodButtons {
+  background-color: #00CFC1;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 2rem;
+}
+
+.cardGroup {
+  margin: auto;
+  width: 85%;
+}
+
+.p {
+  margin: 1rem 2rem;
+}
+
+.entryH2 {
+  color: white;
+  margin: 2rem;
+}
+
+.input {
+  font-size: 1.4rem;
+}
+
+.title {
+  margin: 2rem 2rem 1rem 2rem;
+  font-size: 1.4rem;
+}
+
+.textarea {
+  border: none;
+  margin: 2rem 2rem;
+  padding: 1rem 0.5rem;
+  height: 30rem;
+}
+
+.save {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.entryButton {
+  background-color: whitesmoke;
+  color: black;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.entryButton:hover {
+  background-color: gray;
+}
+
+.medsContainer {
+  background-color: #773344;
+  padding: 2rem;
+}
+
+.medsNotes {
+  background-color: #773344;
+  border: none;
+}
+
+.medsButtons {
+  background-color: #773344;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 2rem;
+}
+
+.bowelContainer {
+  background-color: #3C493F;
+  padding: 2rem;
+}
+
+.bowelNotes {
+  background-color: #3C493F;
+  border: none;
+}
+
+.bowelButtons {
+  background-color: #3C493F;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 2rem;
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,39 @@
+.navlink {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF;
+    margin: 10px 20px;
+
+    &:hover {
+        color: $color-link-hover;
+    }
+}
+
+.logoutLink {
+    color: #FFF;
+    margin-top: 1rem;
+    background-color: #849A89;
+    border: none;
+    font-size: 1.6rem;
+
+    &:hover {
+        color: $color-link-hover;
+    }
+    
+}
+
+.signuplink {
+    font-size: 16px;
+    margin: 10px 20px;
+    &:hover {
+        color: $color-link-hover;
+    }
+}
+
+.forgotPassword {
+    margin-top: 2rem;
+  
+    &:hover {
+      color: $color-link-hover
+    }
+  }

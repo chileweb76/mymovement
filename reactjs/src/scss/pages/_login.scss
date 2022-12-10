@@ -1,0 +1,41 @@
+.loginLogo {
+  width: 50%
+}
+
+.loginContainer {
+  width: 75%;
+  background-color: whitesmoke;
+  margin: auto;
+  height: 100vh;
+}
+
+form {
+  width: 35%;
+  margin: auto;
+}
+
+.center {
+  text-align: center;
+  padding: 5rem;
+}
+
+.spacing {
+  text-align: center;
+  padding-bottom: 12rem;
+}
+
+.signin  {
+    font-size: 2rem;
+    margin: 2rem;
+    border-radius: 1rem;
+    background-color: $color-button;
+    width: auto;
+
+    &:hover {
+      background-color: $color-button-hover;
+    }
+}
+
+.errorMessage {
+  color: red;
+}

@@ -1,0 +1,18 @@
+.medsContainer {
+    background-color: $color-meds;
+    padding: 2rem;
+}
+
+.medsNotes {
+    background-color: $color-meds;
+    border: none;
+}
+
+.medsButtons {
+    background-color: $color-meds;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}

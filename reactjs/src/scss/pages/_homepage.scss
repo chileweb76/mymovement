@@ -1,0 +1,48 @@
+.latesth2 {
+  margin-left: 1rem;
+}
+
+.icon {
+    height: 4rem;
+    width: 4rem;
+    margin: 1rem;
+}
+
+.centeredIcon {
+  text-align: center;
+}
+
+.foodCard {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $color-food;
+  }
+  
+  .moodCard {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $color-mood;
+  }
+  
+  .medsCard {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $color-meds;
+  }
+  
+  .bowelCard {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $color-bowel;
+  }
+
+.update  {
+    font-size: 1.6rem;
+    margin: 2rem;
+    border-radius: 1rem;
+    background-color: $color-button;
+}
+  
+.update:hover {
+    background-color: $color-button-hover;
+}
