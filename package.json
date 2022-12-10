@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "react-scripts build",
     "dev": "(cd reactjs && npm run start) & nodemon --watch server.js --watch api",
     "start": "node server.js"
   },
@@ -20,6 +21,7 @@
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.8.0",
+    "react-scripts": "^5.0.1",
     "sequelize": "^6.25.3",
     "uuid": "^9.0.0"
   },
