@@ -39,6 +39,7 @@ foodCtlr.get('/latest', async (req, res) => {
 foodCtlr.post('/', async (req, res) => {
     try {
         const food = await Post.create( req.body )
+        console.log(req.body)
         return res.json(food);
     } catch (error) {
         console.log(error)
