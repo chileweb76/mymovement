@@ -23,16 +23,19 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/user", {
-              method: "Post",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name,
-                email,
-              }),
-            });
+            const res = await fetch(
+              "https://localhost:3000/api/user" || process.env.WEB_URL,
+              {
+                method: "Post",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name,
+                  email,
+                }),
+              }
+            );
 
             if (res.ok) {
               return user;
