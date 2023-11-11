@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import SignInBtn from "./SignInBtn";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function UserInfo() {
-  const { status, data: session } = useSession();
+  const { data: session } = useSession();
 
-  if (status === "authenticated") {
+  if (session) {
     return (
       <>
-        <SignInBtn />
         <Image
           src={session?.user?.image}
           width={60}
@@ -23,9 +22,10 @@ export default function UserInfo() {
         <p>
           Email: <p>{session?.user?.email}</p>
         </p>
+        <button onClick={() => signOut()}>Sign Out</button>
       </>
     );
   } else {
-    return <SignInBtn />;
+    return redirect("/");
   }
 }
