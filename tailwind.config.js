@@ -10,13 +10,6 @@ module.exports = {
       container: {
         center: true,
       },
-      screens: {
-        small: "700px",
-        mid: "800px",
-        medium: "900px",
-        large: "1200px",
-        xlarge: "1800px",
-      },
       colors: {
         food: "#DC965A",
         mood: "#00CFC1",
@@ -24,6 +17,7 @@ module.exports = {
         bowel: "#3C493F",
         button: "#077187",
         button_hover: "#2AD2F4",
+        background: "#849A89",
       },
     },
   },
