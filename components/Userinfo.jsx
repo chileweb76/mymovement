@@ -3,12 +3,13 @@
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function UserInfo() {
   const { data: session } = useSession();
   const today = new Date();
   const monthName = today.toLocaleString("en-US", { month: "long" });
-  const day = today.getDay();
+  const date = today.getDate();
   const year = today.getFullYear();
 
   if (!session) {
@@ -16,10 +17,10 @@ export default function UserInfo() {
   }
 
   return (
-    <div className="py-4 px-4">
-      <div className="text-center">
-        <p className="text-white">
-          {monthName} {day}, {year}
+    <div className="pt-9 px-4 text-center text-white">
+      <div>
+        <p>
+          {monthName} {date}, {year}
         </p>
       </div>
       <Image
@@ -29,12 +30,17 @@ export default function UserInfo() {
         height={40}
         alt="user image"
       />
-      <div className="text-center text-white">
+      <div>
         <p className="text-xs">Name: {session?.user?.name}</p>
-        <p className="text-xs">Email: {session?.user?.email}</p>
-        <button className="pt-4" onClick={() => signOut()}>
+      </div>
+      <div className="my-4">
+        <Link
+          href="/"
+          className="hover:text-button_hover"
+          onClick={() => signOut()}
+        >
           Sign Out
-        </button>
+        </Link>
       </div>
     </div>
   );
