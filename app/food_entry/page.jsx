@@ -1,12 +1,11 @@
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import NewEntry from "@/components/NewEntry";
+import FoodForm from "@/components/Entries/FoodEntry";
 
 export default function FoodEntry() {
   return (
     <main className="flex flex-col min-h-screen">
-      <Header />
-      <h1>Food Entry</h1>
-      <Footer />
+      <NewEntry />
+      <FoodForm />
     </main>
   );
 }

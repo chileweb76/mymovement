@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import food from "../public/img/food.png";
-import mood from "../public/img/mood.png";
-import meds from "../public/img/meds.png";
-import bowel from "../public/img/bowel.png";
+import food from "@/public/img/food.png";
+import mood from "@/public/img/mood.png";
+import meds from "@/public/img/meds.png";
+import bowel from "@/public/img/bowel.png";
 
-export default function Newentry() {
+export default function Newentry({ test }) {
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center py-9">New Entry</h2>
+      <h2 className="text-3xl font-bold text-center py-6">New Entry</h2>
       <div className="flex justify-center ">
         <div className="flex flex-col mx-4 w-32 ">
           <Link

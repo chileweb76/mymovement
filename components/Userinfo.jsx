@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
-import { redirect } from "next/navigation";
+
 import Link from "next/link";
 
 export default function UserInfo() {
@@ -11,10 +11,6 @@ export default function UserInfo() {
   const monthName = today.toLocaleString("en-US", { month: "long" });
   const date = today.getDate();
   const year = today.getFullYear();
-
-  if (!session) {
-    redirect("/");
-  }
 
   return (
     <div className="pt-9 px-4 text-center text-white">
@@ -37,7 +33,7 @@ export default function UserInfo() {
         <Link
           href="/"
           className="hover:text-button_hover"
-          onClick={() => signOut()}
+          onClick={() => signOut({ callbackUrl: `${window.location.origin}` })}
         >
           Sign Out
         </Link>
