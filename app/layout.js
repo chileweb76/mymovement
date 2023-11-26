@@ -7,6 +7,9 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 export const metadata = {
   title: "Mymovement",
   description: "",
+  icons: {
+    icon: "/img/favicon-16x16.png",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -2,8 +2,8 @@
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 
-import google from "@/public/img/google-logo.png";
-import logo from "@/public/img/mymovement_png.png";
+import google from "/public/img/google-logo.png";
+import logo from "/public/img/mymovement_png.png";
 import { redirect } from "next/navigation";
 
 export default function Login() {
