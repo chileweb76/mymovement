@@ -1,5 +1,5 @@
 import NewEntry from "@/components/NewEntry";
-import FoodForm from "@/components/Entries/FoodEntry";
+import FoodForm from "@/components/entries/FoodEntry";
 
 export default function FoodEntry() {
   return (
