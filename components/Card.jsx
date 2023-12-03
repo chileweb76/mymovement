@@ -1,4 +1,5 @@
 import { foodLatest } from "@/lib/queries/queries";
+import { TimeZone } from "./timezone/timeZone";
 
 export default async function Card(topic) {
   switch (topic.topic) {
@@ -6,19 +7,10 @@ export default async function Card(topic) {
       const entry = await foodLatest();
 
       if (entry.length !== 0) {
-        const date = entry[0].createdAt.toLocaleTimeString("en-us", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        });
-        const time = entry[0].createdAt.toLocaleTimeString("en-us", {
-          hour: "numeric",
-          minute: "numeric",
-        });
         return (
           <div className="bg-food h-80 ">
-            <p className="pl-4 pt-4">{date}</p>
-            <p className="pl-4">{time}</p>
+            <TimeZone entry={entry[0].createdAt} />
+
             <h2 className="text-2xl p-4">{entry[0].title}</h2>
             <p className="text-center px-4">{entry[0].notes}</p>
           </div>
