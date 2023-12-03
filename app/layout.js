@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { NextAuthProvider } from "./Providers";
+import { getServerSession } from "next-auth";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -12,11 +13,12 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession();
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <NextAuthProvider session={session}>{children}</NextAuthProvider>
       </body>
     </html>
   );

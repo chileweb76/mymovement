@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const { name, email } = await req.json();
+
     await connectMongoDB();
     await User.create({ name, email });
     return NextResponse.json({ message: "User Registered" }, { status: 201 });

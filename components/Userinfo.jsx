@@ -20,7 +20,7 @@ export default function UserInfo() {
         </p>
       </div>
       <Image
-        className="rounded-full mx-auto"
+        className="rounded-full mx-auto my-2"
         src={session?.user?.image}
         width={40}
         height={40}
