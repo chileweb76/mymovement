@@ -1,7 +1,7 @@
 "use client";
 
 import NewEntry from "@/components/NewEntry";
-import FoodForm from "@/components/entries/FoodForm";
+import FoodForm from "@/components/Entries/FoodEntry";
 import { useEffect, useState } from "react";
 
 export default function FoodEntry() {
