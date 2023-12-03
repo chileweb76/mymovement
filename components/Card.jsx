@@ -6,12 +6,12 @@ export default async function Card(topic) {
       const entry = await foodLatest();
 
       if (entry.length !== 0) {
-        const date = entry[0].createdAt.toLocaleString("en-us", {
+        const date = entry[0].createdAt.toLocaleTimeString("en-us", {
           month: "short",
           day: "numeric",
           year: "numeric",
         });
-        const time = entry[0].createdAt.toLocaleString("en-us", {
+        const time = entry[0].createdAt.toLocaleTimeString("en-us", {
           hour: "numeric",
           minute: "numeric",
         });
