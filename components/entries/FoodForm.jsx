@@ -16,7 +16,6 @@ export default function FoodSearch(props) {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const topic = "Food";
 
   useEffect(() => {
     setTitle(formState.results.label);
@@ -75,7 +74,7 @@ export default function FoodSearch(props) {
       </div>
       <TopicForm
         notes={notes}
-        topic={topic}
+        topic={props.topic}
         ingredients={ingredients}
         email={props.email}
       />

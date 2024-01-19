@@ -24,8 +24,8 @@ export default function Newentry({ test }) {
         </div>
         <div className="flex flex-col mx-4 w-32 ">
           <Link
-            href="/food_entry"
-            as="food_entry"
+            href="/mood_entry"
+            as="mood_entry"
             className="bg-mood hover:bg-mood_hover rounded-full text-center py-2"
           >
             <button>
@@ -35,8 +35,8 @@ export default function Newentry({ test }) {
         </div>
         <div className="flex flex-col mx-4 w-32 ">
           <Link
-            href="/food_entry"
-            as="food_entry"
+            href="/meds_entry"
+            as="meds_entry"
             className="bg-meds hover:bg-meds_hover rounded-full text-center py-2"
           >
             <button>
@@ -46,8 +46,8 @@ export default function Newentry({ test }) {
         </div>
         <div className="flex flex-col mx-4 w-32 ">
           <Link
-            href="/food_entry"
-            as="food_entry"
+            href="/bowel_entry"
+            as="bowel_entry"
             className="bg-bowel hover:bg-bowel_hover rounded-full text-center py-2"
           >
             <button>

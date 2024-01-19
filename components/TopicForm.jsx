@@ -3,11 +3,20 @@ import * as actions from "@/actions/save";
 import { useFormState } from "react-dom";
 
 import SaveButton from "@/components/buttons/Save";
+import Ingredients from "./Ingredients";
+import { useEffect, useState } from "react";
 
 export default function TopicForm(props) {
   const [formState, action] = useFormState(actions.saveForm, {
     results: {},
   });
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (props.topic === "food") {
+      setShow(true);
+    }
+  }, [props.topic]);
 
   return (
     <>
@@ -28,13 +37,7 @@ export default function TopicForm(props) {
             {formState.results._form?.join(", ")}
           </div>
         ) : null}
-        <h2 className="text-2xl mt-6">Ingredients</h2>
-        <textarea
-          name="ingredients"
-          type="test"
-          className="w-full h-60 text-black placeholder:pl-2"
-          defaultValue={props.ingredients}
-        />
+        {show ? <Ingredients ingredients={props.ingredients} /> : null}
         <input
           name="topic"
           type="text"
@@ -48,7 +51,7 @@ export default function TopicForm(props) {
           defaultValue={props.email}
         />
         <div className="flex justify-end">
-          <SaveButton />
+          <SaveButton button="Save" />
         </div>
       </form>
     </>
