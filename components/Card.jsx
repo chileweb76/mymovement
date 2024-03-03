@@ -3,9 +3,11 @@ import {
   moodLatest,
   medsLatest,
   bowelLatest,
-} from "@/lib/queries/queries";
+} from "@/lib/queries/latestEntries";
 import { TimeZone } from "./timezone/timeZone";
-import SaveButton from "./buttons/Save";
+import Button from "./buttons/Button";
+import Link from "next/link";
+import DeleteButton from "./buttons/Delete";
 
 export default async function Card(topic) {
   switch (topic.topic) {
@@ -14,13 +16,25 @@ export default async function Card(topic) {
 
       if (entry.length !== 0) {
         return (
-          <div className="bg-food h-80 ">
+          <div className="bg-food h-max pb-4 mb-8">
             <TimeZone entry={entry[0].createdAt} />
 
             <h2 className="text-2xl p-4">{entry[0].title}</h2>
+            <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry[0].notes}</p>
-            <div className="flex justify-end ">
-              <SaveButton button="Update" />
+            {entry[0].ingredients !== "" ? (
+              <p className="pl-4">Ingredients:</p>
+            ) : null}
+
+            <p className="text-center px-4">{entry[0].ingredients}</p>
+            <div className="flex justify-between ">
+              <DeleteButton id={entry[0].id} />
+              <Link
+                className="flex justify-end "
+                href={`/${entry[0].topic}/${entry[0].id}`}
+              >
+                <Button button="Update" />
+              </Link>
             </div>
           </div>
         );
@@ -32,13 +46,20 @@ export default async function Card(topic) {
 
       if (entry2.length !== 0) {
         return (
-          <div className="bg-mood h-80 ">
+          <div className="bg-mood h-max pb-4 mb-8 ">
             <TimeZone entry={entry2[0].createdAt} />
 
             <h2 className="text-2xl p-4">{entry2[0].title}</h2>
+            <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry2[0].notes}</p>
-            <div className="flex justify-end">
-              <SaveButton button="Update" />
+            <div className="flex justify-between ">
+              <DeleteButton id={entry2[0].id} />
+              <Link
+                className="flex justify-end "
+                href={`/${entry2[0].topic}/${entry2[0].id}`}
+              >
+                <Button button="Update" />
+              </Link>
             </div>
           </div>
         );
@@ -50,13 +71,20 @@ export default async function Card(topic) {
 
       if (entry3.length !== 0) {
         return (
-          <div className="bg-meds h-80 ">
+          <div className="bg-meds h-max pb-4 mb-8 ">
             <TimeZone entry={entry3[0].createdAt} />
 
             <h2 className="text-2xl p-4">{entry3[0].title}</h2>
+            <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry3[0].notes}</p>
-            <div className="flex justify-end">
-              <SaveButton button="Update" />
+            <div className="flex justify-between ">
+              <DeleteButton id={entry3[0].id} />
+              <Link
+                className="flex justify-end "
+                href={`/${entry3[0].topic}/${entry3[0].id}`}
+              >
+                <Button button="Update" />
+              </Link>
             </div>
           </div>
         );
@@ -68,13 +96,20 @@ export default async function Card(topic) {
 
       if (entry4.length !== 0) {
         return (
-          <div className="bg-bowel h-80 ">
+          <div className="bg-bowel h-max pb-4 mb-8 ">
             <TimeZone entry={entry4[0].createdAt} />
 
             <h2 className="text-2xl p-4">{entry4[0].title}</h2>
+            <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry4[0].notes}</p>
-            <div className="flex justify-end">
-              <SaveButton button="Update" />
+            <div className="flex justify-between ">
+              <DeleteButton id={entry4[0].id} />
+              <Link
+                className="flex justify-end "
+                href={`/${entry4[0].topic}/${entry4[0].id}`}
+              >
+                <Button button="Update" />
+              </Link>
             </div>
           </div>
         );

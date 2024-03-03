@@ -17,7 +17,6 @@ const topicSchema = new Schema(
     },
     ingredients: {
       type: String,
-      required: false,
     },
     userId: {
       type: mongoose.Types.ObjectId,

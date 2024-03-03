@@ -25,12 +25,20 @@ export default function FoodSearch(props) {
     ) {
       setNotes(formState.results.label);
       setIngredients(formState.results.foodContentsLabel);
+    } else {
+      setNotes(props.notes);
+      setIngredients(props.ingredients);
     }
-  }, [formState.results.label, formState.results.foodContentsLabel]);
+  }, [
+    formState.results.label,
+    formState.results.foodContentsLabel,
+    props.notes,
+    props.ingredients,
+  ]);
 
   return (
     <>
-      <h2 className="text-2xl mb-6">Food Entry</h2>
+      <h2 className="text-3xl mb-6">Food Entry</h2>
       <p>Search for foods by UPC</p>
       <form action={action}>
         <div className="flex mb-3 ">
@@ -73,6 +81,9 @@ export default function FoodSearch(props) {
         <p className="bg-white text-black pl-2 w-3/4 h-6">{title}</p>
       </div>
       <TopicForm
+        id={props.id}
+        form={props.form}
+        title={props.title}
         notes={notes}
         topic={props.topic}
         ingredients={ingredients}
