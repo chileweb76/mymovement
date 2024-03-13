@@ -6,7 +6,10 @@ export default function Nav() {
       <Link className="lg:mx-4 mx-2 hover:text-button_hover" href="/home">
         Home
       </Link>
-      <Link className="lg:mx-4 mx-2 hover:text-button_hover" href="/daily">
+      <Link
+        className="lg:mx-4 mx-2 hover:text-button_hover"
+        href="/daily_summary"
+      >
         Daily Summary
       </Link>
     </nav>
