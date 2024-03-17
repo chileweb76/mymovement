@@ -26,8 +26,8 @@ export function TimeZone(entry) {
 
   return (
     <>
-      <p className="pl-4 pt-4">{createdAtDate}</p>
-      <p className="pl-4">{createdAtTime}</p>
+      <p>{createdAtDate}</p>
+      <p className="ml-4">{createdAtTime}</p>
     </>
   );
 }

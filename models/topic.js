@@ -18,8 +18,12 @@ const topicSchema = new Schema(
     ingredients: {
       type: String,
     },
+    date: {
+      type: String,
+      required: true,
+    },
     userId: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: user,
       required: true,
     },

@@ -6,7 +6,9 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <div className="bg-background grid grid-cols-3 place-content-around p-6 mt-auto">
-      <p className="text-white self-center">© Christopher Hile</p>
+      <p className="text-xs sm:text-base text-white self-center">
+        © Christopher Hile
+      </p>
       <Link
         href="https://www.edamam.com/"
         className="justify-self-center self-center "

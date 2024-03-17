@@ -17,8 +17,9 @@ export default async function Card(topic) {
       if (entry.length !== 0) {
         return (
           <div className="bg-food h-max pb-4 mb-8">
-            <TimeZone entry={entry[0].createdAt} />
-
+            <div className="pt-4 px-4 flex flex-row justify-between">
+              <TimeZone entry={entry[0].createdAt} />
+            </div>
             <h2 className="text-2xl p-4">{entry[0].title}</h2>
             <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry[0].notes}</p>
@@ -47,7 +48,9 @@ export default async function Card(topic) {
       if (entry2.length !== 0) {
         return (
           <div className="bg-mood h-max pb-4 mb-8 ">
-            <TimeZone entry={entry2[0].createdAt} />
+            <div className="pt-4 px-4 flex flex-row justify-between">
+              <TimeZone entry={entry2[0].createdAt} />
+            </div>
 
             <h2 className="text-2xl p-4">{entry2[0].title}</h2>
             <p className="pl-4">Notes:</p>
@@ -72,8 +75,9 @@ export default async function Card(topic) {
       if (entry3.length !== 0) {
         return (
           <div className="bg-meds h-max pb-4 mb-8 ">
-            <TimeZone entry={entry3[0].createdAt} />
-
+            <div className="pt-4 px-4 flex flex-row justify-between">
+              <TimeZone entry={entry3[0].createdAt} />
+            </div>
             <h2 className="text-2xl p-4">{entry3[0].title}</h2>
             <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry3[0].notes}</p>
@@ -97,8 +101,9 @@ export default async function Card(topic) {
       if (entry4.length !== 0) {
         return (
           <div className="bg-bowel h-max pb-4 mb-8 ">
-            <TimeZone entry={entry4[0].createdAt} />
-
+            <div className="pt-4 px-4 flex flex-row justify-between">
+              <TimeZone entry={entry4[0].createdAt} />
+            </div>
             <h2 className="text-2xl p-4">{entry4[0].title}</h2>
             <p className="pl-4">Notes:</p>
             <p className="text-center px-4">{entry4[0].notes}</p>

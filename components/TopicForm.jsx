@@ -56,6 +56,7 @@ export default function TopicForm(props) {
           hidden={true}
           defaultValue={props.form}
         />
+
         <input name="id" type="text" hidden={true} defaultValue={props.id} />
         <div className="flex justify-end">
           {formState.results._error ? (

@@ -25,6 +25,7 @@ export async function saveForm(formState, formData) {
   const ingredients = formData.get("ingredients");
   const form = formData.get("form");
   const id = formData.get("id");
+  const date = new Date().toLocaleDateString();
 
   if (value.error) {
     return { results: { _error: "Title and Notes cannot be empty" } };
@@ -32,8 +33,7 @@ export async function saveForm(formState, formData) {
     switch (form) {
       case "update":
         const objectId = new ObjectId(id);
-        ``;
-        const data = { title, notes, topic, email, ingredients };
+        const data = { title, notes, topic, email, ingredients, date };
         await connectMongoDB();
         await Topic.findByIdAndUpdate({ _id: objectId }, data);
         break;
@@ -51,6 +51,7 @@ export async function saveForm(formState, formData) {
               topic,
               email,
               ingredients,
+              date,
             }),
           });
         } catch (error) {
