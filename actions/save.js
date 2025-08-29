@@ -45,10 +45,22 @@ export async function saveForm(formState, formData) {
     switch (form) {
       case "update":
         const objectId = new ObjectId(id);
-        const data = { title, notes, topic, email, ingredients, date };
+        
+        // Security: Ensure user can only update their own entries
+        const col = await getTopicCollection();
+        const existingEntry = await col.findOne({ _id: objectId });
+        if (!existingEntry) {
+          return { results: { _error: "Entry not found" } };
+        }
+        
+        // Check if the entry belongs to the current user
+        if (!existingEntry.userId || existingEntry.userId.toString() !== user._id.toString()) {
+          return { results: { _error: "You can only update your own entries" } };
+        }
+        
+        const data = { title, notes, topic, ingredients, date, userId: user._id };
         // ensure connection and update the topics collection directly
         await clientPromise;
-        const col = await getTopicCollection();
         await col.updateOne({ _id: objectId }, { $set: data });
         break;
 
