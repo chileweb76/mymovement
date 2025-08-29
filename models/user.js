@@ -156,7 +156,7 @@ export async function createEmailVerificationToken(email) {
     const user = await col.findOne({ email });
     if (!user) return null;
     const token = randomBytes(32).toString("hex");
-    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    const expires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
     const secret = process.env.VERIFY_TOKEN_SECRET;
     if (!secret) throw new Error("VERIFY_TOKEN_SECRET environment variable is required to create verification tokens");
     const tokenHash = createHmac("sha256", secret).update(token).digest("hex");
@@ -171,13 +171,32 @@ export async function verifyEmailToken(token) {
     const col = await getUserCollection();
     const secret = process.env.VERIFY_TOKEN_SECRET;
     if (!secret) throw new Error("VERIFY_TOKEN_SECRET environment variable is required to verify tokens");
+    
+    console.log(`[VERIFY DEBUG] Verifying token with length: ${token ? token.length : 0}`);
+    console.log(`[VERIFY DEBUG] VERIFY_TOKEN_SECRET is set: ${!!secret}`);
+    
     const tokenHash = createHmac("sha256", secret).update(token).digest("hex");
+    console.log(`[VERIFY DEBUG] Generated token hash: ${tokenHash.substring(0, 10)}...`);
+    
     const user = await col.findOne({ verifyTokenHash: tokenHash, verifyTokenExpires: { $gt: new Date() } });
-    if (!user) return null;
+    console.log(`[VERIFY DEBUG] User found with valid token: ${!!user}`);
+    
+    if (!user) {
+        // Check if user exists with this hash but expired
+        const expiredUser = await col.findOne({ verifyTokenHash: tokenHash });
+        if (expiredUser) {
+            console.log(`[VERIFY DEBUG] Token found but expired. Expires: ${expiredUser.verifyTokenExpires}, Now: ${new Date()}`);
+        } else {
+            console.log(`[VERIFY DEBUG] No user found with this token hash`);
+        }
+        return null;
+    }
+    
     await col.updateOne(
         { _id: user._id },
         { $set: { emailVerified: true }, $unset: { verifyTokenHash: "", verifyTokenExpires: "" } }
     );
+    console.log(`[VERIFY DEBUG] User ${user.email} successfully verified`);
     return true;
 }
 

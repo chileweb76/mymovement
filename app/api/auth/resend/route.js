@@ -26,6 +26,10 @@ export async function POST(req) {
           const verifyUrl = `${base.replace(/\/$/, "")}/api/auth/verify?token=${encodeURIComponent(token)}`;
           const templateId = process.env.COURIER_VERIFY_TEMPLATE_ID;
 
+          console.log(`[VERIFY DEBUG] Generated verification URL: ${verifyUrl}`);
+          console.log(`[VERIFY DEBUG] Token expires: ${expires}`);
+          console.log(`[VERIFY DEBUG] Token length: ${token.length} chars`);
+
           const dataPayload = {
             verifyUrl,
             verify_url: verifyUrl,
