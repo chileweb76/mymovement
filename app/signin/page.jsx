@@ -25,6 +25,8 @@ export default function SignInPage() {
   const [forgotMessage, setForgotMessage] = useState("");
   const [forgotBusy, setForgotBusy] = useState(false);
 
+  const [resendingVerification, setResendingVerification] = useState(false);
+
   async function submit(e) {
     e.preventDefault();
     setMessage("");
@@ -37,13 +39,29 @@ export default function SignInPage() {
         });
         const data = await res.json();
         if (!res.ok) return setMessage(data?.error || "error");
-        return setMessage("Registered — you can now log in.");
+        return setMessage("Registration successful! Check your email for a verification link, then sign in.");
       } catch {
         return setMessage("network_error");
       }
     }
 
+    // For login, first check our custom login API for better error handling
     try {
+      const loginRes = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const loginData = await loginRes.json();
+      
+      if (!loginRes.ok) {
+        if (loginData?.error === "email_not_verified") {
+          return setMessage("email_not_verified");
+        }
+        return setMessage(loginData?.error || "invalid_credentials");
+      }
+      
+      // If login API succeeds, proceed with NextAuth signin
       const result = await signIn("credentials", {
         redirect: false,
         email,
@@ -54,6 +72,32 @@ export default function SignInPage() {
       router.push("/home");
     } catch {
       setMessage("network_error");
+    }
+  }
+
+  async function resendVerification() {
+    if (!email) {
+      setMessage("Please enter your email address first");
+      return;
+    }
+    
+    setResendingVerification(true);
+    try {
+      const res = await fetch("/api/auth/resend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      
+      if (res.ok) {
+        setMessage("verification_resent");
+      } else {
+        setMessage("Failed to resend verification email");
+      }
+    } catch {
+      setMessage("Network error. Please try again.");
+    } finally {
+      setResendingVerification(false);
     }
   }
 
@@ -170,7 +214,30 @@ export default function SignInPage() {
 
                 {message && (
                   <div className="mt-3">
-                    <div className="text-sm text-center bg-gray-100 p-2 rounded text-gray-800">{message}</div>
+                    {message === "email_not_verified" ? (
+                      <div className="text-sm text-center bg-yellow-50 border border-yellow-200 p-3 rounded">
+                        <div className="text-yellow-800 mb-2">
+                          Please verify your email address before signing in.
+                        </div>
+                        <div className="text-yellow-700 text-xs mb-3">
+                          Check your inbox for a verification email, or click below to resend.
+                        </div>
+                        <button
+                          type="button"
+                          onClick={resendVerification}
+                          disabled={resendingVerification}
+                          className="inline-flex items-center px-3 py-1 bg-yellow-600 text-white text-xs rounded hover:bg-yellow-700 disabled:opacity-50"
+                        >
+                          {resendingVerification ? "Sending..." : "Resend verification email"}
+                        </button>
+                      </div>
+                    ) : message === "verification_resent" ? (
+                      <div className="text-sm text-center bg-green-50 border border-green-200 p-3 rounded text-green-800">
+                        Verification email sent! Check your inbox and click the link to verify your account.
+                      </div>
+                    ) : (
+                      <div className="text-sm text-center bg-gray-100 p-2 rounded text-gray-800">{message}</div>
+                    )}
                   </div>
                 )}
               </form>
