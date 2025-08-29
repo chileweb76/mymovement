@@ -59,9 +59,16 @@ export async function upsertGoogleUser({ email, name, googleId }) {
         // ensure googleId and provider are recorded
         const update = {};
         // If the user was created locally or provider isn't google, switch to google
-        if (existing.provider !== "google") update.provider = "google";
+        if (existing.provider !== "google") {
+            update.provider = "google";
+            update.emailVerified = true; // Google accounts are pre-verified
+        }
         // Set or update the googleId if provided
         if (googleId && existing.googleId !== googleId) update.googleId = googleId;
+        // Ensure Google users are marked as verified
+        if (existing.provider === "google" && !existing.emailVerified) {
+            update.emailVerified = true;
+        }
         if (Object.keys(update).length) {
             await col.updateOne({ _id: existing._id }, { $set: update });
             const updated = await col.findOne({ _id: existing._id });
@@ -76,6 +83,7 @@ export async function upsertGoogleUser({ email, name, googleId }) {
         name,
         provider: "google",
         googleId,
+        emailVerified: true, // Google accounts are pre-verified
         createdAt: new Date(),
     };
     const res = await col.insertOne(doc);

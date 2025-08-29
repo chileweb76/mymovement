@@ -9,18 +9,21 @@ export async function GET(req) {
   try {
     const url = new URL(req.url);
     const token = url.searchParams.get("token");
+    const base = process.env.RESET_URL_BASE || process.env.NEXTAUTH_URL || "http://localhost:3000";
+    
     if (!token) {
-      return NextResponse.redirect("/verify-email?result=failure");
+      return NextResponse.redirect(new URL("/verify-email?result=failure", base));
     }
 
     const ok = await verifyEmailToken(token);
     if (ok) {
-      return NextResponse.redirect("/verify-email?result=success");
+      return NextResponse.redirect(new URL("/verify-email?result=success", base));
     }
 
-    return NextResponse.redirect("/verify-email?result=failure");
+    return NextResponse.redirect(new URL("/verify-email?result=failure", base));
   } catch (err) {
     console.error("verify token error", err);
-    return NextResponse.redirect("/verify-email?result=failure");
+    const base = process.env.RESET_URL_BASE || process.env.NEXTAUTH_URL || "http://localhost:3000";
+    return NextResponse.redirect(new URL("/verify-email?result=failure", base));
   }
 }

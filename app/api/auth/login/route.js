@@ -16,6 +16,11 @@ export async function POST(req) {
       return NextResponse.json({ error: "invalid_credentials" }, { status: 401 });
     }
 
+    // Check if email is verified for local accounts
+    if (user.provider === "local" && !user.emailVerified) {
+      return NextResponse.json({ error: "email_not_verified" }, { status: 403 });
+    }
+
     const ok = verifyPassword(user.password, password);
     if (!ok) {
       return NextResponse.json({ error: "invalid_credentials" }, { status: 401 });

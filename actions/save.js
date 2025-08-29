@@ -45,11 +45,18 @@ export async function saveForm(formState, formData) {
     switch (form) {
       case "update":
         const objectId = new ObjectId(id);
-        const data = { title, notes, topic, email, ingredients, date };
         // ensure connection and update the topics collection directly
         await clientPromise;
         const col = await getTopicCollection();
-        await col.updateOne({ _id: objectId }, { $set: data });
+        
+        // Security: only allow user to update their own records
+        const existingRecord = await col.findOne({ _id: objectId, userId: user._id });
+        if (!existingRecord) {
+          return { results: { _error: "Record not found or you don't have permission to update it" } };
+        }
+        
+        const data = { title, notes, topic, email, ingredients, date };
+        await col.updateOne({ _id: objectId, userId: user._id }, { $set: data });
         break;
 
       default:

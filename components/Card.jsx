@@ -8,16 +8,28 @@ import { TimeZone } from "@/components/timezone/timeZone";
 import Button from "@/components/button/button";
 import Link from "next/link";
 import DeleteButton from "@/components/button/delete";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 /**
  * Server component that fetches latest entry for each topic and renders Tailwind cards.
  */
 export default async function Card() {
+  const session = await getServerSession(authOptions);
+  
+  if (!session || !session.user?.email) {
+    return (
+      <div className="mt-8 w-5/6 mx-auto">
+        <h2 className="text-2xl md:text-3xl font-bold text-center py-4 text-black">Please sign in to view your entries</h2>
+      </div>
+    );
+  }
+
   const [foodRes, moodRes, medsRes, bowelRes] = await Promise.all([
-    foodLatest(),
-    moodLatest(),
-    medsLatest(),
-    bowelLatest(),
+    foodLatest(session.user.email),
+    moodLatest(session.user.email),
+    medsLatest(session.user.email),
+    bowelLatest(session.user.email),
   ]);
 
   const collections = [
