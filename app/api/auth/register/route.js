@@ -3,7 +3,17 @@ import { findUserByEmail, createUser } from "../../../../models/user.js";
 import { createEmailVerificationToken } from "../../../../models/user.js";
 import { CourierClient } from "@trycourier/courier";
 
-const courier = new CourierClient({ authorizationToken: process.env.COURIER_AUTH_TOKEN });
+// Initialize Courier client with error handling
+let courier;
+try {
+  const authToken = process.env.COURIER_AUTH_TOKEN;
+  if (!authToken) {
+    console.warn("[COURIER] COURIER_AUTH_TOKEN not set - email sending will fail");
+  }
+  courier = new CourierClient({ authorizationToken: authToken });
+} catch (err) {
+  console.error("[COURIER] Failed to initialize Courier client:", err);
+}
 
 /** POST /api/auth/register
  * body: { email, name, password }
@@ -24,16 +34,37 @@ export async function POST(req) {
 
     // create verification token and send email (do not fail registration on email send errors)
     try {
+      // Check required environment variables
+      const courierAuth = process.env.COURIER_AUTH_TOKEN;
+      const verifySecret = process.env.VERIFY_TOKEN_SECRET;
+      
+      if (!courierAuth) {
+        console.error("[PROD ERROR] COURIER_AUTH_TOKEN not set - emails will not be sent");
+        return NextResponse.json({ id: id.toString() }, { status: 201 });
+      }
+      
+      if (!verifySecret) {
+        console.error("[PROD ERROR] VERIFY_TOKEN_SECRET not set - verification will not work");
+        return NextResponse.json({ id: id.toString() }, { status: 201 });
+      }
+
+      if (!courier) {
+        console.error("[PROD ERROR] Courier client not initialized - emails will not be sent");
+        return NextResponse.json({ id: id.toString() }, { status: 201 });
+      }
+
       const result = await createEmailVerificationToken(email);
       if (result) {
         const { token, expires } = result;
-        const base = process.env.RESET_URL_BASE || "http://localhost:3000";
+        const base = process.env.RESET_URL_BASE || process.env.NEXTAUTH_URL || "http://localhost:3000";
         const verifyUrl = `${base.replace(/\/$/, "")}/api/auth/verify?token=${encodeURIComponent(token)}`;
         const templateId = process.env.COURIER_VERIFY_TEMPLATE_ID;
 
         console.log(`[VERIFY DEBUG] Generated verification URL: ${verifyUrl}`);
         console.log(`[VERIFY DEBUG] Token expires: ${expires}`);
         console.log(`[VERIFY DEBUG] Token length: ${token.length} chars`);
+        console.log(`[VERIFY DEBUG] Using base URL: ${base}`);
+        console.log(`[VERIFY DEBUG] Environment: ${process.env.NODE_ENV}`);
 
         const dataPayload = {
           verifyUrl,
