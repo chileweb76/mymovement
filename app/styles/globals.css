@@ -1,0 +1,55 @@
+/* stylelint-disable at-rule-no-unknown */
+@import "tailwindcss";
+
+/* project tokens */
+:root { 
+  --food: #DC965A;
+  --mood: #00CFC1;
+  --meds: #773344;
+  --bowel: #3C493F;
+  --brand-panel: #849A89;
+  --accent: #077187;
+}
+
+/* lightweight defaults */
+html,body,#root { height: 100%; }
+body {
+  background-image: url('/img/papercrop.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Montserrat", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Print styles: show only the summary cards area */
+@media print {
+  /* hide everything by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* allow the print area to be visible */
+  .daily-summary-print-area, .daily-summary-print-area * {
+    visibility: visible !important;
+  }
+
+  /* position the print area at the top-left */
+  .daily-summary-print-area {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* optional: adjust card backgrounds for printing (lighten for printers)
+     and ensure high contrast */
+  .daily-summary-print-area .rounded-lg {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
