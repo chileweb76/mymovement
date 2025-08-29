@@ -1,16 +1,10 @@
 {
-<<<<<<< HEAD
   "name": "mymovement",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">=20"
   },
-=======
-  "name": "mymovement2",
-  "version": "0.1.0",
-  "private": true,
->>>>>>> d651c79f538e6ffa78124dcb4e5bbc469c6e3b4b
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,46 +12,30 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@trycourier/courier": "^6.5.0",
     "axios": "^1.6.2",
+    "date-fns": "^4.1.0",
+    "google-auth-library": "^10.2.1",
+    "html2pdf.js": "^0.11.2",
     "joi": "^17.11.0",
+    "mongodb": "^6.3.0",
     "mongoose": "^8.0.0",
     "next": "^14.0.3",
     "next-auth": "^4.24.4",
+    "puppeteer": "^24.17.1",
     "react": "^18",
     "react-datepicker": "^6.2.0",
     "react-dom": "^18",
     "react-icons": "^5.0.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "latest",
     "autoprefixer": "^10.4.16",
+    "dotenv": "^17.2.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
-=======
-    "@trycourier/courier": "^6.5.0",
-    "axios": "^1.11.0",
-    "date-fns": "^4.1.0",
-    "google-auth-library": "^10.2.1",
-    "html2pdf.js": "^0.11.2",
-    "joi": "^18.0.1",
-    "mongodb": "^6.3.0",
-    "next": "15.4.6",
-    "next-auth": "^4.24.11",
-    "puppeteer": "^24.17.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "latest",
-    "autoprefixer": "^10.4.21",
-    "dotenv": "^17.2.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6",
-    "postcss": "^8.5.6",
-    "tailwindcss": "latest"
->>>>>>> d651c79f538e6ffa78124dcb4e5bbc469c6e3b4b
   }
 }
