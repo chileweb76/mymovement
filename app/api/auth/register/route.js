@@ -43,16 +43,17 @@ export async function POST(req) {
         };
 
         if (templateId) {
-          await courier.send({
+          const sendRes = await courier.send({
             message: {
               to: { email },
               template: templateId,
               data: dataPayload,
             },
           });
+          console.log("courier send result (template):", JSON.stringify(sendRes));
         } else {
           // fallback plain message
-          await courier.send({
+          const sendRes = await courier.send({
             message: {
               to: { email },
               content: {
@@ -61,6 +62,7 @@ export async function POST(req) {
               },
             },
           });
+          console.log("courier send result (fallback):", JSON.stringify(sendRes));
         }
       }
     } catch (mailErr) {

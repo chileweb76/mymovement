@@ -38,9 +38,11 @@ export async function POST(req) {
           };
 
           if (templateId) {
-            await courier.send({ message: { to: { email }, template: templateId, data: dataPayload } });
+            const sendRes = await courier.send({ message: { to: { email }, template: templateId, data: dataPayload } });
+            console.log("courier send result (template):", JSON.stringify(sendRes));
           } else {
-            await courier.send({ message: { to: { email }, content: { title: "Verify your email", body: `Click to verify your email:\n\n${verifyUrl}\n\nThis link expires at ${expires}.` } } });
+            const sendRes = await courier.send({ message: { to: { email }, content: { title: "Verify your email", body: `Click to verify your email:\n\n${verifyUrl}\n\nThis link expires at ${expires}.` } } });
+            console.log("courier send result (fallback):", JSON.stringify(sendRes));
           }
         }
       }
