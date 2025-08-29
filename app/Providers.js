@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
@@ -19,4 +20,10 @@ export const NextAuthProvider = ({ children }) => {
       </SessionProvider>
     );
   }
+=======
+import { SessionProvider } from "next-auth/react";
+
+export const NextAuthProvider = ({ children, session }) => {
+  return <SessionProvider session={session}>{children}</SessionProvider>;
+>>>>>>> d651c79f538e6ffa78124dcb4e5bbc469c6e3b4b
 };

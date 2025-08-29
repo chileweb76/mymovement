@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
@@ -50,3 +51,11 @@ export const authOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+=======
+import NextAuth from "next-auth";
+import { authOptions } from "../../../../lib/auth.js";
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
+>>>>>>> d651c79f538e6ffa78124dcb4e5bbc469c6e3b4b
