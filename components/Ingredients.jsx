@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-export default function Ingredients(props) {
-  return (
-    <>
-      <h2 className="text-2xl mt-6">Ingredients</h2>
-      <textarea
-        name="ingredients"
-        type="test"
-        className="w-full h-60 text-black placeholder:pl-2"
-        defaultValue={props.ingredients}
-=======
 import React from "react";
 
 export default function Ingredients({ ingredients, value, onChange, className = "", ...rest }) {
@@ -26,7 +15,6 @@ export default function Ingredients({ ingredients, value, onChange, className = 
         {...(isControlled ? { value, onChange } : { defaultValue: ingredients })}
         aria-label="Ingredients"
         {...rest}
->>>>>>> d651c79f538e6ffa78124dcb4e5bbc469c6e3b4b
       />
     </>
   );

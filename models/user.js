@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import mongoose, { Schema } from "mongoose";
-
-const userSchema = new Schema(
-  {
-    email: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
-
-export default mongoose.models?.User || mongoose.model("User", userSchema);
-=======
 import { randomBytes, scryptSync, timingSafeEqual, createHmac } from "crypto";
 import clientPromise from "@/lib/mongodb";
 
@@ -212,4 +193,3 @@ export async function resetPassword(token, newPassword) {
     );
     return true;
 }
->>>>>>> d651c79f538e6ffa78124dcb4e5bbc469c6e3b4b
