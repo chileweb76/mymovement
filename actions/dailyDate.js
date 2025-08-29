@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 export async function dailyDate(formState, formData) {
   const searchParams = formData.get("searchParams");
   const date = formData.get("date");
+  console.log(searchParams);
 
   if (searchParams === null) {
     redirect(`/daily_summary?date=${date}`);

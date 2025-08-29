@@ -6,21 +6,17 @@ import { useFormState } from "react-dom";
 
 import { HiArrowCircleDown } from "react-icons/hi";
 import { HiArrowCircleUp } from "react-icons/hi";
-import { useSearchParams } from "next/navigation";
 
 export default function DropDown() {
   const [formState, action] = useFormState(actions.dailyTopic, {
     results: {},
   });
 
-  const searchParams = useSearchParams();
-
   const [isOpen, setIsOpen] = useState(false);
   const [topic, setTopic] = useState("");
 
   return (
     <form action={action}>
-      <input name="searchParams" hidden={true} defaultValue={searchParams} />
       <button
         name="topic"
         value={topic}

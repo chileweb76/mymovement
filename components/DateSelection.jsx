@@ -23,9 +23,10 @@ export default function DateSelection() {
     <form action={action} className="mb-4 flex h-6">
       <input name="searachParams" hidden={true} defaultValue={searchParams} />
       <DatePicker
+        dateFormat="M/dd/YYYY"
         className="text-center w-28 rounded-l-md "
         selected={startDate}
-        onChange={(date) => setStartDate(date.toLocaleDateString())}
+        onChange={(date) => setStartDate(date)}
         defaultValue={startDate}
         name="date"
       />

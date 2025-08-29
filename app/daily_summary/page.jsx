@@ -10,7 +10,7 @@ export default async function DailySummary({ searchParams }) {
       <h1 className="text-3xl font-bold text-center m-4">Daily Summary</h1>
       <div className="flex flex-col-reverse sm:grid sm:grid-cols-4 ">
         <div className="sm:col-span-3">
-          <DailyTable date={searchParams.date} />
+          <DailyTable date={searchParams.date} topic={searchParams.topic} />
         </div>
         <div className="mx-8">
           <DateSelection />
