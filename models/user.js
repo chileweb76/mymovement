@@ -94,17 +94,16 @@ export async function upsertGoogleUser({ email, name, googleId }) {
 
 /**
  * Update a user's profile fields by their current email.
- * Accepts an object with optional { name, newEmail, image }.
+ * Accepts an object with optional { name, newEmail }.
  * Returns the updated user document or throws on conflict.
  */
-export async function updateUserProfileByEmail(currentEmail, { name, newEmail, image }) {
+export async function updateUserProfileByEmail(currentEmail, { name, newEmail }) {
     const col = await getUserCollection();
     const user = await col.findOne({ email: currentEmail });
     if (!user) return null;
 
     const update = {};
     if (name && name !== user.name) update.name = name;
-    if (typeof image !== 'undefined') update.image = image;
 
     if (newEmail && newEmail !== currentEmail) {
         // ensure newEmail isn't already used by another account

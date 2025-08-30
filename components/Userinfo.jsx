@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -28,29 +27,15 @@ export default function UserInfo() {
   return (
     <div className="text-white text-center">
       <div className="mb-2">
-        <p className="text-sm">
+        <p className="text-lg">
           {monthName} {date}, {year}
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-2">
-        <Link href="/settings" aria-label="Open settings" className="inline-block">
-          <Image
-            className="rounded-full border-2 border-white"
-            src={localUser?.image || session?.user?.image || "/img/user.png"}
-            width={40}
-            height={40}
-            alt={
-              localUser?.name || session?.user?.name
-                ? `${(localUser?.name || session?.user?.name)} avatar`
-                : "user image"
-            }
-          />
-        </Link>
-        
+      <div className="flex flex-col items-center gap-2">        
         <div className="text-center">
           <Link href="/settings" className="text-white no-underline block text-center">
-            <span className="text-xs block">Name: {localUser?.name || session?.user?.name}</span>
+            <span className="text-base block">Name: {localUser?.name || session?.user?.name}</span>
           </Link>
         </div>
       </div>

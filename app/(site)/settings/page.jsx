@@ -1,6 +1,5 @@
 "use client";
 import { useSession, signOut, signIn } from "next-auth/react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -14,7 +13,6 @@ export default function SettingsPage() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editName, setEditName] = useState("");
   const [editEmail, setEditEmail] = useState("");
-  const [editImagePreview, setEditImagePreview] = useState(null);
   const searchParams = useSearchParams();
 
   async function fetchProvider() {
@@ -98,20 +96,6 @@ export default function SettingsPage() {
         <div className="w-full">
           <div className="bg-white shadow-lg rounded-lg p-8">
             <div className="text-center">
-              <div className="flex justify-center mb-6">
-                <Image
-                  src={localUser?.image || session?.user?.image || "/img/user.png"}
-                  width={120}
-                  height={120}
-                  alt={
-                    localUser?.name || session?.user?.name
-                      ? `${(localUser?.name || session?.user?.name)} avatar`
-                      : "user image"
-                  }
-                  className="rounded-full object-cover border-4 border-gray-200"
-                />
-              </div>
-
               <h5 className="text-xl font-semibold mb-1">
                 {localUser?.name || session?.user?.name || "User"}
               </h5>
@@ -180,7 +164,6 @@ export default function SettingsPage() {
                     onClick={() => {
                       setEditName(session?.user?.name || "");
                       setEditEmail(session?.user?.email || "");
-                      setEditImagePreview(session?.user?.image || null);
                       setShowEditModal(true);
                     }}
                   >
@@ -205,7 +188,6 @@ export default function SettingsPage() {
             onClose={() => setShowEditModal(false)}
             initialName={editName}
             initialEmail={editEmail}
-            initialImage={editImagePreview}
             onSaved={(user) => {
               setLocalUser(user);
               window.dispatchEvent(new CustomEvent("profileUpdated", { detail: user }));
@@ -219,28 +201,18 @@ export default function SettingsPage() {
 }
 
 // Edit profile modal markup placed after component (kept in same file for simplicity)
-function EditProfileModal({ show, onClose, initialName, initialEmail, initialImage, onSaved }) {
+function EditProfileModal({ show, onClose, initialName, initialEmail, onSaved }) {
   const [name, setName] = useState(initialName || "");
   const [email, setEmail] = useState(initialEmail || "");
-  const [imagePreview, setImagePreview] = useState(initialImage || null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setName(initialName || "");
     setEmail(initialEmail || "");
-    setImagePreview(initialImage || null);
-  }, [initialName, initialEmail, initialImage]);
+  }, [initialName, initialEmail]);
 
   if (!show) return null;
-
-  async function handleFileChange(e) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => setImagePreview(reader.result);
-    reader.readAsDataURL(file);
-  }
 
   async function handleSubmit() {
     setSubmitting(true);
@@ -249,7 +221,7 @@ function EditProfileModal({ show, onClose, initialName, initialEmail, initialIma
       const res = await fetch("/api/user/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, image: imagePreview }),
+        body: JSON.stringify({ name, email }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "update_failed");
@@ -269,22 +241,7 @@ function EditProfileModal({ show, onClose, initialName, initialEmail, initialIma
       <div className="w-full max-w-2xl bg-white rounded-lg p-6 shadow-lg">
         <h5 className="text-lg font-semibold mb-4">Edit Profile</h5>
 
-        <div className="mb-4 text-center">
-          {imagePreview ? (
-            // preview image
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={imagePreview} alt="preview" className="w-28 h-28 rounded-full object-cover mx-auto" />
-          ) : (
-            <div className="w-28 h-28 rounded-full bg-gray-100 mx-auto" />
-          )}
-        </div>
-
         <div className="grid grid-cols-1 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Avatar image</label>
-            <input type="file" accept="image/*" className="block w-full text-sm text-gray-700" onChange={handleFileChange} />
-          </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
             <input

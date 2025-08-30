@@ -11,12 +11,12 @@ export async function POST(req) {
     }
 
     const body = await req.json();
-    const { name, email: newEmail, image } = body;
+    const { name, email: newEmail } = body;
 
     try {
-      const updated = await updateUserProfileByEmail(session.user.email, { name, newEmail, image });
+      const updated = await updateUserProfileByEmail(session.user.email, { name, newEmail });
       if (!updated) return NextResponse.json({ error: 'user_not_found' }, { status: 404 });
-      return NextResponse.json({ user: { id: updated._id.toString(), email: updated.email, name: updated.name, image: updated.image || null } });
+      return NextResponse.json({ user: { id: updated._id.toString(), email: updated.email, name: updated.name } });
     } catch (err) {
       if (err && err.code === 'email_in_use') {
         return NextResponse.json({ error: 'email_in_use' }, { status: 409 });
