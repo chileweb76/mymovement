@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@trycourier/courier": "^6.5.0",
+    "@zxing/library": "^0.21.3",
     "axios": "^1.11.0",
     "date-fns": "^4.1.0",
     "google-auth-library": "^10.2.1",
