@@ -46,7 +46,16 @@ export async function POST(req) {
         const result = await createEmailVerificationToken(email);
         if (result) {
           const { token, expires } = result;
-          const base = process.env.RESET_URL_BASE || process.env.NEXTAUTH_URL || "http://localhost:3000";
+          
+          // Ensure base URL is properly formatted
+          let base = process.env.RESET_URL_BASE || process.env.NEXTAUTH_URL || "http://localhost:3000";
+          if (base && !base.startsWith('http://') && !base.startsWith('https://')) {
+            base = 'https://' + base;
+          }
+          if (base === 'https//mymovement.vercel.app') {
+            base = 'https://mymovement.vercel.app';
+          }
+          
           const verifyUrl = `${base.replace(/\/$/, "")}/api/auth/verify?token=${encodeURIComponent(token)}`;
           const templateId = process.env.COURIER_VERIFY_TEMPLATE_ID;
 
