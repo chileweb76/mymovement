@@ -39,7 +39,7 @@ export default function VerifyEmailPage({ searchParams }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-xl w-full p-8 bg-white rounded shadow">
         {result === "success" ? (
           <div>
