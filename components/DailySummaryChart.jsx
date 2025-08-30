@@ -283,17 +283,17 @@ export default function DailySummaryChart({ userEmail }) {
               {entries.map((entry, index) => (
                 <div
                   key={entry.id || index}
-                  className="flex items-start gap-4 p-4 rounded-lg text-white"
+                  className="flex items-start gap-4 p-6 rounded-lg text-white min-h-[240px]"
                   style={{ backgroundColor: TOPIC_COLORS[entry.topic] }}
                 >
-                  <div className="flex-shrink-0 text-sm font-medium">
-                    {formatTime(entry.createdAt)}
-                  </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-medium uppercase tracking-wide opacity-90">
                         {TOPIC_LABELS[entry.topic]}
                       </span>
+                      <div className="flex-shrink-0 text-sm font-medium">
+                        {formatTime(entry.createdAt)}
+                      </div>
                     </div>
                     <h4 className="font-semibold text-lg mb-1">{entry.title}</h4>
                     {entry.notes && (

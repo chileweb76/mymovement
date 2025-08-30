@@ -44,7 +44,7 @@ export default async function Card() {
       <h2 className="text-2xl md:text-3xl font-bold text-center py-4 text-black">Latest Entry</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
         {collections.map(({ key, entry, color }) => (
-          <div key={key} className="h-48 md:h-52 lg:h-56 xl:h-60 w-full">
+          <div key={key} className="h-64 md:h-72 lg:h-80 xl:h-88 w-full">
             {entry ? (
               <div className="bg-white rounded-lg shadow-lg h-full w-full overflow-hidden">
                 <div
@@ -52,28 +52,32 @@ export default async function Card() {
                   style={{ backgroundColor: color }}
                 >
                   <div className="flex justify-between items-start">
-                    <div className="text-xs md:text-sm">
+                    <div className="flex-1">
+                      {/* Title moved to top left */}
+                      <h5 className="text-xl md:text-2xl lg:text-3xl font-bold">{entry.title}</h5>
+                    </div>
+                    <div className="text-xs md:text-sm ml-4 text-right flex-shrink-0">
                       <TimeZone entry={entry.createdAt} />
                     </div>
                   </div>
 
-                  <h5 className="text-xl md:text-2xl lg:text-3xl font-bold mt-2 md:mt-3">{entry.title}</h5>
+                  <div className="flex-1 overflow-y-auto mt-2 md:mt-3">
+                    <p className="text-xs md:text-sm">Notes:</p>
+                    <p className="mt-1 text-xs md:text-sm">{entry.notes}</p>
 
-                  <p className="text-xs md:text-sm mt-2">Notes:</p>
-                  <p className="mt-1 flex-1 text-xs md:text-sm">{entry.notes}</p>
+                    {entry.ingredients && entry.ingredients.length ? (
+                      <>
+                        <p className="text-xs md:text-sm mt-3">Ingredients:</p>
+                        <p className="mt-1 text-xs md:text-sm">
+                          {Array.isArray(entry.ingredients)
+                            ? entry.ingredients.join(", ")
+                            : entry.ingredients}
+                        </p>
+                      </>
+                    ) : null}
+                  </div>
 
-                  {entry.ingredients && entry.ingredients.length ? (
-                    <>
-                      <p className="text-xs md:text-sm mt-3">Ingredients:</p>
-                      <p className="mt-1 text-xs md:text-sm">
-                        {Array.isArray(entry.ingredients)
-                          ? entry.ingredients.join(", ")
-                          : entry.ingredients}
-                      </p>
-                    </>
-                  ) : null}
-
-                  <div className="flex items-center justify-between mt-3 md:mt-4">
+                  <div className="flex items-center justify-between mt-3 md:mt-4 flex-shrink-0">
                     <DeleteButton id={entry.id} />
                     <Link href={`/${entry.topic}/${entry.id}`} className="ml-auto">
                       <Button button="Update" variant="secondary" />
