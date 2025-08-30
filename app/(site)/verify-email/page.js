@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, use } from "react";
 import Link from "next/link";
 
 export default function VerifyEmailPage({ searchParams }) {
-  const result = (searchParams && searchParams.result) || null;
+  const params = use(searchParams);
+  const result = (params && params.result) || null;
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
