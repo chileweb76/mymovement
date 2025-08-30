@@ -112,11 +112,20 @@ export default function SignInPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: forgotEmail }),
       });
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error('Forgot password error:', res.status, errorData);
+        setForgotMessage(`Error: ${res.status} - ${errorData.error || 'Unknown error'}`);
+        return;
+      }
+      
       const data = await res.json();
       const minutes = data?.resetExpiresMinutes;
       setForgotMessage(minutes ? `If that account exists, a reset link has been sent (expires in ${minutes} minutes).` : "If that account exists, a reset link has been sent.");
-    } catch {
-      setForgotMessage("network_error");
+    } catch (err) {
+      console.error('Network error:', err);
+      setForgotMessage(`Network error: ${err.message}`);
     } finally {
       setForgotBusy(false);
     }
