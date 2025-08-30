@@ -10,12 +10,8 @@ export default async function SignInLayout({ children }) {
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en">
-      <body>
-        <NextAuthProvider session={session}>
-          <main>{children}</main>
-        </NextAuthProvider>
-      </body>
-    </html>
+    <NextAuthProvider session={session}>
+      <main>{children}</main>
+    </NextAuthProvider>
   );
 }

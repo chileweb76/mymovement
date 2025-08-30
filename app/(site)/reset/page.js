@@ -37,7 +37,7 @@ export default function ResetPage() {
         setBusy(false);
         return;
       }
-      setMessage("Password reset — you can now sign in");
+      setMessage("Password successfully changed — you can now sign in");
       setTimeout(() => router.push("/signin"), 1200);
     } catch (err) {
       console.error(err);
@@ -48,22 +48,11 @@ export default function ResetPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50">
+    <main className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-2xl font-semibold mb-4 text-gray-800">Reset password</h1>
 
         <form onSubmit={submit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Reset token</label>
-            <input
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              placeholder="Paste token here or use link with ?token=..."
-              className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent"
-              aria-label="reset token"
-            />
-          </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700">New password</label>
             <input
@@ -92,7 +81,7 @@ export default function ResetPage() {
               type="submit"
               className="flex-1 px-4 py-2 bg-accent text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:brightness-95"
             >
-              {busy ? "Working..." : "Reset password"}
+              {busy ? "Saving..." : "Save"}
             </button>
 
             <button
