@@ -155,10 +155,15 @@ export async function createEmailVerificationToken(email) {
     const col = await getUserCollection();
     const user = await col.findOne({ email });
     if (!user) return null;
+    
+    const secret = process.env.VERIFY_TOKEN_SECRET;
+    if (!secret) {
+        console.error("[VERIFY ERROR] VERIFY_TOKEN_SECRET environment variable is not set - verification tokens cannot be created");
+        return null;
+    }
+    
     const token = randomBytes(32).toString("hex");
     const expires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
-    const secret = process.env.VERIFY_TOKEN_SECRET;
-    if (!secret) throw new Error("VERIFY_TOKEN_SECRET environment variable is required to create verification tokens");
     const tokenHash = createHmac("sha256", secret).update(token).digest("hex");
     await col.updateOne(
         { _id: user._id },
@@ -170,10 +175,19 @@ export async function createEmailVerificationToken(email) {
 export async function verifyEmailToken(token) {
     const col = await getUserCollection();
     const secret = process.env.VERIFY_TOKEN_SECRET;
-    if (!secret) throw new Error("VERIFY_TOKEN_SECRET environment variable is required to verify tokens");
     
     console.log(`[VERIFY DEBUG] Verifying token with length: ${token ? token.length : 0}`);
     console.log(`[VERIFY DEBUG] VERIFY_TOKEN_SECRET is set: ${!!secret}`);
+    
+    if (!secret) {
+        console.error("[VERIFY ERROR] VERIFY_TOKEN_SECRET environment variable is not set - verification cannot proceed");
+        return null;
+    }
+    
+    if (!token) {
+        console.log(`[VERIFY DEBUG] No token provided`);
+        return null;
+    }
     
     const tokenHash = createHmac("sha256", secret).update(token).digest("hex");
     console.log(`[VERIFY DEBUG] Generated token hash: ${tokenHash.substring(0, 10)}...`);

@@ -1,13 +1,75 @@
-# Email Verification Fix
+# Email Verification 500 Error Fix
 
-## Issue
-The email verification was failing because `RESET_URL_BASE` in `.env` was pointing to the production Vercel URL instead of localhost for local development.
+## Issue Diagnosed
+The verification link was returning HTTP 500 because `VERIFY_TOKEN_SECRET` environment variable was not set in production, causing the verification functions to throw errors instead of handling the missing configuration gracefully.
 
-## Solution
-For local development, ensure your `.env` file has:
+## Fixes Applied
+
+### 1. Fixed user.js model functions
+- `verifyEmailToken()` now returns `null` instead of throwing when `VERIFY_TOKEN_SECRET` is missing
+- `createEmailVerificationToken()` now returns `null` instead of throwing when `VERIFY_TOKEN_SECRET` is missing  
+- Added detailed logging to help diagnose verification issues
+
+### 2. Environment Variables Required in Production
+
+Add these to your Vercel environment variables:
 
 ```bash
-RESET_URL_BASE=http://localhost:3000
+# Required for email verification to work
+VERIFY_TOKEN_SECRET=your-random-secret-key-here
+
+# Required for sending emails via Courier
+COURIER_AUTH_TOKEN=your-courier-production-auth-token
+
+# Optional: Courier template ID for verification emails
+COURIER_VERIFY_TEMPLATE_ID=your-template-id
+
+# Required: Base URL for verification links
+RESET_URL_BASE=https://mymovement.vercel.app
+
+# Already set (NextAuth)
+NEXTAUTH_URL=https://mymovement.vercel.app
+NEXTAUTH_SECRET=your-nextauth-secret
+```
+
+## How to Generate VERIFY_TOKEN_SECRET
+
+Run this in your terminal to generate a strong random secret:
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+## Testing the Fix
+
+### Local Test
+1. Set the environment variables locally in `.env.local`
+2. Run: `npm run dev`
+3. Test registration and click the verification link
+
+### Production Test
+1. Add environment variables to Vercel
+2. Redeploy
+3. Test registration flow
+
+## Verification Flow Debug
+
+The verification now includes detailed logging:
+- Token length and hash generation
+- Environment variable status
+- Database query results
+- Token expiration status
+
+Check your Vercel function logs for `[VERIFY DEBUG]` and `[VERIFY ERROR]` entries.
+
+## Current Status
+✅ 500 errors fixed - graceful handling of missing env vars
+❌ Still need to set `VERIFY_TOKEN_SECRET` in production for verification to actually work
+❌ Still need to set `COURIER_AUTH_TOKEN` in production for emails to be sent
+
+## Next Steps
+1. Add the required environment variables to Vercel
+2. Redeploy to production
+3. Test the complete registration → email → verification flow
 ```
 
 For production (Vercel), it should be:
