@@ -91,9 +91,9 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4">
-      <div className="flex justify-center">
-        <div className="w-full">
+    <div className="w-full max-w-2xl mx-auto px-4 flex items-center justify-center min-h-[60vh]">
+      <div className="flex justify-center w-full">
+        <div className="w-full max-w-2xl">
           <div className="bg-white shadow-lg rounded-lg p-8">
             <div className="text-center">
               <h5 className="text-xl font-semibold mb-1">

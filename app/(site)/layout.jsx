@@ -11,7 +11,7 @@ export default async function SiteLayout({ children }) {
     <div className="min-h-screen flex flex-col">
       <NextAuthProvider session={session}>
         <Header session={session} />
-        <main className="pb-8">{children}</main>
+  <main className="flex-1 pb-8">{children}</main>
         <Footer />
       </NextAuthProvider>
     </div>
