@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:quiet": "npm --silent run dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install:quiet": "npm install --silent"
   },
   "dependencies": {
     "@trycourier/courier": "^6.5.0",
